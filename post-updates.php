@@ -8,12 +8,27 @@
  * Author: Christian Jung
  * Author URI: http://campino2k.de
  */
+class wp_post_update_links {
 
-var $updates = [];
-
-if(!function_exists('insert_post_update')){
-    function insert_post_update(){
-        
+    //$updatelinks = array();
+    
+    function insert_post_update_links( $content ){
+        return '<ul><li><a href="#">Update Link</a></li></ul>' . $content;
     }
-}
+    
+    function replace_update_shortcodes( $content ){
+    
+    }
+    /*
+    function monats_gericht( $atts, $content=null, $code="" ) {
+        $price = $atts['preis'];
+        return '<div class="gericht"><div class="name"><p>' . $content . '</p></div><div class="preis">&euro;&nbsp;'. $price . '</div><hr /></div>';
+    };
+    add_shortcode('gericht', 'monats_gericht');
+    */
+
+};
+
+add_filter( 'the_content', array('wp_post_update_links', 'insert_post_update_links' ));
+
 ?>
