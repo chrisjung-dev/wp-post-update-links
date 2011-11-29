@@ -3,7 +3,7 @@ Contributors: campino2k
 Donate link: http://example.com/
 Tags: post,update,links
 Requires at least: 3.0.1
-Tested up to: 3.2
+Tested up to: 3.3
 Stable tag: 0.1
 
 Wordpress Post Update Links will place some Links at the beginning to Update-Sections in a Post or Page.
