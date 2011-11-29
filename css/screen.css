@@ -1,0 +1,24 @@
+div.update-links-section {
+}
+	div.update-links-headline {
+		font-weight: bold;
+		display: inline;
+		padding-right: 1em;
+	}
+	ul.update-links {
+		margin:0;padding:0;
+		list-style: none;
+		display:inline;
+	}
+		ul.update-links li {
+			display: inline;
+		}
+
+		ul.update-links li::after {
+			content: " | ";
+		}
+		ul.update-links li:last-child::after {
+			content: "";
+		}
+			ul.update-links li a {
+			}
