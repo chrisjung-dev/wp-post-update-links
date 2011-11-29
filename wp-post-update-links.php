@@ -40,5 +40,5 @@ add_shortcode( 'update', array( $wp_post_update_links, 'execute_update_shortcode
  *	Add filter AFTER Shortcode to have the Update Link Array
  */
 add_filter( 'the_content', array( $wp_post_update_links, 'insert_post_update_links' ), 12 );
-wp_enqueue_style( 'wp_post_update_links_style', plugins_url( 'css/screen.css', __FILE__ ), null, 20111129, 'screen' );
+wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), null, 20111129, 'screen' );
 ?>
