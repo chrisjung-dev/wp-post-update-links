@@ -17,15 +17,26 @@ class wp_post_update_links {
     
     public function insert_post_update_links( $content ){
 		global $post;
-		$link_html = '<div class="update-links-section">';
-		$link_html .= '<div class="update-links-headline">' . __( 'Updates:', 'wp_post_update_links') .'</div>';
-        $link_html .= '<ul class="update-links">';
-        foreach( $this->update_links as $i => $update_link ){
-            $link_html .= '<li><a href="#post-' . $post->ID . '_update-' . $i .'">' . $update_link . '</a></li>';
-        };
-        $link_html .= '</ul>';
-        $link_html .= '</div>';
-        return $link_html . $content;
+		if( !isset( $update_count ) &&  !isset( $this->update_links ) ) {
+			return $content;
+		} else {
+			$link_html = '<div class="update-links-section">';
+			$link_html .= '<div class="update-links-headline">' . __( 'Updates:', 'wp_post_update_links') .'</div>';
+			$link_html .= '<ul class="update-links">';
+			foreach( $this->update_links as $i => $update_link ){
+				$link_html .= '<li><a href="#post-' . $post->ID . '_update-' . $i .'">' . $update_link . '</a></li>';
+			};
+			$link_html .= '</ul>';
+			$link_html .= '</div>';
+			
+			/*
+			 * remove vars to have no side effects in other posts on index pages
+			 */
+			unset( $update_count );
+			unset( $this->update_links );
+
+			return $link_html . $content;
+		} 
     }
     public function execute_update_shortcodes( $atts, $content=null, $code="" ) {
 		global $post;
