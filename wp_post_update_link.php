@@ -34,5 +34,5 @@ class wp_post_update_links {
 
 $wp_post_update_links = new wp_post_update_links();
 add_shortcode( 'update', array( $wp_post_update_links, 'execute_update_shortcodes') );
-add_filter( 'the_content', array( $wp_post_update_links, 'insert_post_update_links' ) );
+add_filter( 'the_content', array( $wp_post_update_links, 'insert_post_update_links' ), 12 );
 ?>
