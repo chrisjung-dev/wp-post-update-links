@@ -41,7 +41,7 @@ class wp_post_update_links {
     public function execute_update_shortcodes( $atts, $content=null, $code="" ) {
 		global $post;
 		$this->update_count++;
-        $this->update_links[] = $atts['title'] ? $atts['title'] : __('Update ', 'wp_post_update_links' ) . $this->update_count;
+        $this->update_links[] = $atts['title'] ? $atts['title'] : __('Update ', 'wp_post_update_links' ) . ( $this->update_count + 1 );
         return '<div class="update" id="post-' . $post->ID . '_update-' . $this->update_count . '">' . $content . '</div>';
     }
 };
