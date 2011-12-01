@@ -3,7 +3,7 @@ div.update-links-section {
 	div.update-links-headline {
 		font-weight: bold;
 		display: inline;
-		padding-right: 1em;
+		padding-right: .5em;
 	}
 	ul.update-links {
 		margin:0;padding:0;

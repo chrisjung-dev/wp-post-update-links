@@ -6,6 +6,7 @@
  * Version: 0.1
  * Author: Christian Jung
  * Author URI: http://campino2k.de
+ * License: GPLv2
  */
 class wp_post_update_links {
     
@@ -39,6 +40,9 @@ class wp_post_update_links {
 		$return = '<div class="update" id="post-' . $post->ID . '_update-' . ( count( $this->update_links[ $post->ID ] ) - 1 ) . '">' . $content . '</div>';
 		return $return;
 	}
+	public function add_wp_post_update_links_style() {
+		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111129', 'screen' );
+	}
 };
 /*
  *	Create Instance to have some encapsulation
@@ -55,8 +59,5 @@ add_filter( 'the_content', array( $wp_post_update_links, 'insert_post_update_lin
 /*
  *	Add standard styling (everything inline)
  */
-add_action( 'wp_print_styles', 'add_wp_post_update_links_style' );
-function add_wp_post_update_links_style() {
-	wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111129', 'screen' );
-}
+add_action( 'wp_print_styles', array( $wp_post_update_links, 'add_wp_post_update_links_style' ) );
 ?>
