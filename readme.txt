@@ -13,6 +13,24 @@ Wordpress Post Update Links will place some Links at the beginning to Update-Sec
 
 This will describe the plugin better in the future.
 
+= Usage = 
+
+Put the Shortcode [update] around some Update-Section. You're done.
+
+= Examples = 
+
+Auto generated title:
+
+> [update]
+> This is an Update
+> [/update]
+
+Self defined Text:  
+
+> [update title="My custom Update title"]
+> This is an Update
+> [/update]
+
 == Installation ==
 
 Install Plugin via Wordpress Install or Upload the zip file
