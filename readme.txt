@@ -1,4 +1,4 @@
-=== Wordpress Post Update Links ===
+=== WordPress Post Update Links ===
 Contributors: campino2k
 Donate link: http://example.com/
 Tags: post,update,links
@@ -7,7 +7,7 @@ Tested up to: 3.3
 Stable tag: 0.1
 License: GPLv2
 
-Wordpress Post Update Links will place some Links at the beginning to Update-Sections in a Post or Page.
+WordPress Post Update Links will place some Links at the beginning to Update-Sections in a Post or Page.
 
 == Description ==
 
