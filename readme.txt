@@ -1,8 +1,8 @@
 === WordPress Post Update Links ===
 Contributors: campino2k
-Donate link: http://example.com/
+Donate link: http://wiki.campino2k.de/donate
 Tags: post,update,links
-Requires at least: 3.0.1
+Requires at least: 3.2
 Tested up to: 3.3
 Stable tag: 0.1
 License: GPLv2
@@ -11,9 +11,11 @@ WordPress Post Update Links will place some links at the beginning to Update-Sec
 
 == Description ==
 
-This will describe the plugin better in the future.
+Who doesn't know this: You published a post, you add an Update and then you need some time to perhaps link the updates at the beginning of the post.
 
-= Usage = 
+This will solve your problem: just update, put the shortcode around your update and leave the rest up to the plugin.
+
+= Usage =
 
 Put the Shortcode [update] around some Update-Section. You're done.
 
@@ -33,7 +35,7 @@ Self defined Text:
 
 == Installation ==
 
-Install Plugin via Wordpress Install or Upload the zip file
+Install Plugin via WordPress Install or upload the .zip file
 
 == Frequently Asked Questions ==
 
@@ -41,10 +43,15 @@ Install Plugin via Wordpress Install or Upload the zip file
 
 nope.
 
+== Screenshots ==
+
+1. What the links look like in TwentyEleven default theme if you don't override the styles
+
 
 == Changelog ==
 
 = 0.1 =
+
 * First draft, complete with i8ln preparings
 
 == Upgrade Notice ==
