@@ -45,7 +45,7 @@ class wp_post_update_links {
 		return $return;
 	}
 	public function add_wp_post_update_links_style() {
-		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', 'wp-post-update-links' ), false, '20111202', 'screen' );
+		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111202', 'screen' );
 	}
 };
 /*
