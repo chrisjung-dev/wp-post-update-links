@@ -7,7 +7,7 @@ Tested up to: 3.3
 Stable tag: 0.1
 License: GPLv2
 
-WordPress Post Update Links will place some Links at the beginning to Update-Sections in a Post or Page.
+WordPress Post Update Links will place some links at the beginning to Update-Sections in a Post or Page.
 
 == Description ==
 

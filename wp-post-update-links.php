@@ -17,6 +17,10 @@ class wp_post_update_links {
 		if( !isset( $this->update_links[ $post->ID ] ) ) {
 			return $content;
 		} else {
+			/**
+			 * Create update section
+			 * use classes since multiple posts can be shown at once
+			 */
 			$link_html = '<div class="update-links-section">';
 			$link_html .= '<div class="update-links-headline">' . __( 'Updates:', 'wp_post_update_links') .'</div>';
 			$link_html .= '<ul class="update-links">';
@@ -41,7 +45,7 @@ class wp_post_update_links {
 		return $return;
 	}
 	public function add_wp_post_update_links_style() {
-		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111129', 'screen' );
+		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', 'wp-post-update-links' ), false, '20111202', 'screen' );
 	}
 };
 /*
