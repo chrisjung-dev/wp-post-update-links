@@ -3,15 +3,52 @@
  * Plugin Name: Wordpress Post Update Links
  * Plugin URI: http://wiki.campino2k.de/programmierung/wp-post-update-links
  * Description: Inserts Links to Update sections in the Beginning of Posts and Pages
- * Version: 0.1
+ * Version: 0.2
  * Author: Christian Jung
  * Author URI: http://campino2k.de
  * License: GPLv2
  */
+
+/**
+ * create instance of post update at init action
+ * needs to be be before print_styles since we add some own styles
+ */
+add_action( 'init', function() {
+	$wp_post_update_links = wp_post_update_links::getInstance(); 
+});
+
 class wp_post_update_links {
     
 	private $update_links;
-    
+	private static $instance = NULL;
+	
+	private function __construct() {
+		/*
+		 *	Create Instance to have some encapsulation
+		 */
+		//$wp_post_update_links = new wp_post_update_links();
+		/*
+		 *	Add shortcode function
+		 */
+		add_shortcode( 'update', array( $this, 'execute_update_shortcodes') );
+		/*
+		 *	Add filter AFTER Shortcode to have the Update Link Array
+		 */
+		add_filter( 'the_content', array( $this, 'insert_post_update_links' ), 12 );
+		/*
+		 *	Add standard styling (everything inline)
+		 */
+		add_action( 'wp_print_styles', array( $this, 'add_wp_post_update_links_style' ) );
+	}
+	
+	public static function getInstance() {
+		// taken from wikipedia singleton article
+		if (NULL === self::$instance) {
+			self::$instance = new self;
+		 }
+		return self::$instance;
+	}
+
 	public function insert_post_update_links( $content ){
 		global $post;
 		if( !isset( $this->update_links[ $post->ID ] ) ) {
@@ -36,6 +73,7 @@ class wp_post_update_links {
 			return $link_html . $content;
 		} 
 	}
+
 	public function execute_update_shortcodes( $atts, $content=null, $code="" ) {
 		global $post;
 		$this->update_links[] = $post->ID;
@@ -44,24 +82,10 @@ class wp_post_update_links {
 		$return = '<div class="update" id="post-' . $post->ID . '_update-' . ( count( $this->update_links[ $post->ID ] ) - 1 ) . '">' . $content . '</div>';
 		return $return;
 	}
+
 	public function add_wp_post_update_links_style() {
 		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111202', 'screen' );
 	}
+
 };
-/*
- *	Create Instance to have some encapsulation
- */
-$wp_post_update_links = new wp_post_update_links();
-/*
- *	Add shortcode function
- */
-add_shortcode( 'update', array( $wp_post_update_links, 'execute_update_shortcodes') );
-/*
- *	Add filter AFTER Shortcode to have the Update Link Array
- */
-add_filter( 'the_content', array( $wp_post_update_links, 'insert_post_update_links' ), 12 );
-/*
- *	Add standard styling (everything inline)
- */
-add_action( 'wp_print_styles', array( $wp_post_update_links, 'add_wp_post_update_links_style' ) );
 ?>
