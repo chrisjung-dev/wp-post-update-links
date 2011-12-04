@@ -50,6 +50,10 @@ nope.
 
 == Changelog ==
 
+= 0.2 =
+
+* Refactor to OOP model
+
 = 0.1 =
 
 * First draft, complete with i8ln preparings
