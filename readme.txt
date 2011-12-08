@@ -4,7 +4,7 @@ Donate link: http://wiki.campino2k.de/donate
 Tags: post,update,links
 Requires at least: 3.2
 Tested up to: 3.3
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 License: GPLv2
 
 WordPress Post Update Links will place some links at the beginning to Update-Sections in a Post or Page.
@@ -49,6 +49,10 @@ nope.
 
 
 == Changelog ==
+
+= 0.2.3 =
+
+* After feedback from php developer, simplified the code, removing the singleton-stuff
 
 = 0.2.2 =
 

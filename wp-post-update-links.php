@@ -3,7 +3,7 @@
  * Plugin Name: Wordpress Post Update Links
  * Plugin URI: http://wiki.campino2k.de/programmierung/wp-post-update-links
  * Description: Inserts Links to Update sections in the Beginning of Posts and Pages
- * Version: 0.2.2
+ * Version: 0.2.3
  * Author: Christian Jung
  * Author URI: http://campino2k.de
  * License: GPLv2
@@ -14,41 +14,29 @@
  * needs to be be before print_styles since we add some own styles
  */
 add_action( 'init', function() {
-	$wp_post_update_links = wp_post_update_links::getInstance(); 
+	// create anonymous instance on init
+	new wp_post_update_links(); 
 });
 
 class wp_post_update_links {
     
 	private $update_links;
-	private static $instance = NULL;
 	
-	private function __construct() {
-		/*
-		 *	Create Instance to have some encapsulation
-		 */
-		//$wp_post_update_links = new wp_post_update_links();
-		/*
+	public function __construct() {
+		/**
 		 *	Add shortcode function
 		 */
 		add_shortcode( 'update', array( $this, 'execute_update_shortcodes') );
-		/*
+		/**
 		 *	Add filter AFTER Shortcode to have the Update Link Array
 		 */
 		add_filter( 'the_content', array( $this, 'insert_post_update_links' ), 12 );
-		/*
+		/**
 		 *	Add standard styling (everything inline)
 		 */
 		add_action( 'wp_print_styles', array( $this, 'add_wp_post_update_links_style' ) );
 	}
 	
-	public static function getInstance() {
-		// taken from wikipedia singleton article
-		if (NULL === self::$instance) {
-			self::$instance = new self;
-		 }
-		return self::$instance;
-	}
-
 	public function insert_post_update_links( $content ){
 		global $post;
 		if( !isset( $this->update_links[ $post->ID ] ) ) {
