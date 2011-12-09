@@ -56,11 +56,7 @@ nope.
 
 = 0.2.2 =
 
-<<<<<<< HEAD
 * update to remove version inconsistency
-=======
-* update version note inconsistency
->>>>>>> Remove version inconsistency
 
 = 0.2.1 =
 
