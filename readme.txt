@@ -4,7 +4,7 @@ Donate link: http://wiki.campino2k.de/donate
 Tags: post,update,links
 Requires at least: 3.2
 Tested up to: 3.3
-Stable tag: 0.2.3
+Stable tag: 0.2.4
 License: GPLv2
 
 WordPress Post Update Links will place some links at the beginning to Update-Sections in a Post or Page.
@@ -49,6 +49,10 @@ nope.
 
 
 == Changelog ==
+
+= 0.2.4 = 
+
+ * add Flattr link in Plugin overview
 
 = 0.2.3 =
 

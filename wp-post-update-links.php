@@ -3,7 +3,7 @@
  * Plugin Name: Wordpress Post Update Links
  * Plugin URI: http://wiki.campino2k.de/programmierung/wp-post-update-links
  * Description: Inserts Links to Update sections in the Beginning of Posts and Pages
- * Version: 0.2.3
+ * Version: 0.2.4
  * Author: Christian Jung
  * Author URI: http://campino2k.de
  * License: GPLv2
@@ -35,6 +35,10 @@ class wp_post_update_links {
 		 *	Add standard styling (everything inline)
 		 */
 		add_action( 'wp_print_styles', array( $this, 'add_wp_post_update_links_style' ) );
+		/**
+		 *	Add Custom Links to Plugin information
+		 */
+		add_filter( 'plugin_row_meta', array( $this, 'init_meta_links' ),	10,	2 );
 	}
 	
 	public function insert_post_update_links( $content ){
@@ -75,5 +79,19 @@ class wp_post_update_links {
 		wp_enqueue_style( 'wp-post-update-links-style', plugins_url( 'css/screen.css', __FILE__ ), false, '20111202', 'screen' );
 	}
 
+	public function init_meta_links( $links, $file ) {
+		if( plugin_basename( __FILE__) == $file  )  {
+			return array_merge(
+				$links,
+				array(
+					sprintf(
+						'<a href="https://flattr.com/thing/444258/WordPress-Post-Update-Links-Plugin" target="_blank">%s</a>',
+						esc_html__('Flattr')
+					)
+				)
+			);
+		}
+		return $links;
+	}
 };
 ?>
