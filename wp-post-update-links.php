@@ -3,7 +3,7 @@
  * Plugin Name: Wordpress Post Update Links
  * Plugin URI: http://wiki.campino2k.de/programmierung/wp-post-update-links
  * Description: Inserts Links to Update sections in the Beginning of Posts and Pages
- * Version: 0.2.4
+ * Version: 0.3.0
  * Author: Christian Jung
  * Author URI: http://campino2k.de
  * License: GPLv2
@@ -23,19 +23,27 @@ class wp_post_update_links {
 	private $update_links;
 	
 	public function __construct() {
-		/**
+		/*
 		 *	Add shortcode function
 		 */
 		add_shortcode( 'update', array( $this, 'execute_update_shortcodes') );
-		/**
+
+		/*
+		 *	Add filter to fix empty paragraphs in shortcodes
+		 */
+		add_filter( 'the_content', array( $this, 'remove_empty_paragraphs' ) );
+
+		/*
 		 *	Add filter AFTER Shortcode to have the Update Link Array
 		 */
 		add_filter( 'the_content', array( $this, 'insert_post_update_links' ), 12 );
-		/**
+
+		/*
 		 *	Add standard styling (everything inline)
 		 */
-		add_action( 'wp_print_styles', array( $this, 'add_wp_post_update_links_style' ) );
-		/**
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_wp_post_update_links_style' ) );
+
+		/*
 		 *	Add Custom Links to Plugin information
 		 */
 		add_filter( 'plugin_row_meta', array( $this, 'init_meta_links' ),	10,	2 );
@@ -66,12 +74,53 @@ class wp_post_update_links {
 		} 
 	}
 
+	public function remove_empty_paragraphs ( $content ) {
+		
+		/**
+		 *	remove empty paragraphs
+		 *
+		 *	original work by Johann Heyne 
+		 *	http://www.johannheyne.de/wordpress/shortcode-empty-paragraph-fix/
+		 */
+		
+		$content = strtr( $content, array ( '<p>[' => '[', ']</p>' => ']', ']<br />' => ']') );
+
+		return $content;
+	}
+
 	public function execute_update_shortcodes( $atts, $content=null, $code="" ) {
 		global $post;
 		$this->update_links[] = $post->ID;
-		$update_link_text = __('Update ', 'wp_post_update_links' ) . ( isset(  $this->update_links[ $post->ID ] ) ?  count( $this->update_links[ $post->ID ] ) + 1 :	'1' );
-		$this->update_links[ $post->ID ][] = isset( $atts['title'] ) ? $atts['title'] : $update_link_text;
-		$return = '<div class="update" id="post-' . $post->ID . '_update-' . ( count( $this->update_links[ $post->ID ] ) - 1 ) . '">' . $content . '</div>';
+
+		// predefine update link text
+		$update_link_text = __('Update ', 'wp_post_update_links' ) . ( isset(  $this->update_links[ $post->ID ] ) ?  count( $this->update_links[ $post->ID ] ) + 1 : '1' );
+
+		/*	
+		 * Check if title is available and not "false" then override standard link text
+		 * "false" should not been displayed
+		 */
+		$update_link_text = isset( $atts['title'] ) && $atts['title'] !== "false" ? $atts['title'] : $update_link_text;
+ 
+		 // put update title in nested array for later use
+		$this->update_links[ $post->ID ][] = $update_link_text;
+
+		$return = '<div class="update" id="post-' . $post->ID . '_update-' . ( count( $this->update_links[ $post->ID ] ) - 1 ) . '">';
+		if(	
+			!( isset( $atts['notitle'] )
+			&& $atts['notitle'] == "true" )
+			&& ( isset( $atts['title'] )
+			&& $atts['title'] != "false" ) 
+		) {
+			$return .= '<p class="update-post-title">' . $update_link_text  . '</p>';
+		}
+
+		
+		/*
+		 *	Use wpautop() on content of the shortcode to have correct p-tags in it
+		 */
+		$return .= wpautop( $content );
+
+		$return .= '</div>';
 		return $return;
 	}
 

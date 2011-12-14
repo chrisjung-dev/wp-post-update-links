@@ -1,14 +1,16 @@
 div.update-links-section {
 }
 	div.update-links-headline {
-		font-weight: bold;
 		display: inline;
 		padding-right: .5em;
+		
+		font-weight: bold;
 	}
 	ul.update-links {
 		margin:0;padding:0;
-		list-style: none;
 		display:inline;
+		
+		list-style: none;
 	}
 		ul.update-links li {
 			display: inline;
@@ -22,3 +24,12 @@ div.update-links-section {
 		}
 			ul.update-links li a {
 			}
+.update {
+	
+}
+	.update-post-title {
+		margin: .5em 0;
+
+		font-size: 1.2em;
+		font-weight: bold;
+	}

@@ -4,7 +4,7 @@ Donate link: http://wiki.campino2k.de/donate
 Tags: post,update,links
 Requires at least: 3.2
 Tested up to: 3.3
-Stable tag: 0.2.4
+Stable tag: 0.3.0
 License: GPLv2
 
 WordPress Post Update Links will place some links at the beginning to Update-Sections in a Post or Page.
@@ -33,6 +33,19 @@ Self defined Text:
 > This is an Update
 > [/update]
 
+Self defined title not shown in post
+
+> [update title="My custom update link text" notitle="true"]
+> This is an Update with a custom link text in the beginning, but not showing inside the post
+> [/update]
+
+Auto generated title not shown in post
+
+> [update title="false"]
+> This is an Update with a default link text in the beginning, but not showing inside the post
+> [/update]
+
+
 == Installation ==
 
 Install Plugin via WordPress Install or upload the .zip file
@@ -50,9 +63,13 @@ nope.
 
 == Changelog ==
 
-= 0.2.4 = 
+= 0.3.0 = 
 
  * add Flattr link in Plugin overview
+ * add custom headlines in post text
+ * shortcode contents are now placed in P tags
+ * used some code from 
+ * resolve possible incompatibility with WordPress 3.3 by changing CSS to hook `wp_enqueue_scripts` like mentionied in [WordPress Development Updates](http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/)
 
 = 0.2.3 =
 
@@ -76,6 +93,10 @@ nope.
 
 == Upgrade Notice ==
 
+= 0.3.0 =
+
+ * Wordpress 3.3 should upgrade immediately	due to the changed CSS-Hook API
+
 = 0.1 =
-none so far
+* none so far
 
