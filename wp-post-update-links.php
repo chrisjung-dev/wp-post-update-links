@@ -14,7 +14,7 @@
  * needs to be be before print_styles since we add some own styles
  */
 add_action( 'init', function() {
-	// create anonymous instance on init
+// create anonymous instance on init
 	new wp_post_update_links(); 
 });
 
@@ -23,6 +23,11 @@ class wp_post_update_links {
 	private $update_links;
 	
 	public function __construct() {
+		/*
+		 *	Add localization 
+		 */
+		load_plugin_textdomain( 'wp-post-update-links', false, dirname( plugin_basename(__FILE__) ) . '/lang' );
+
 		/*
 		 *	Add shortcode function
 		 */
@@ -59,7 +64,7 @@ class wp_post_update_links {
 			 * use classes since multiple posts can be shown at once
 			 */
 			$link_html = '<div class="update-links-section">';
-			$link_html .= '<div class="update-links-headline">' . __( 'Updates:', 'wp_post_update_links') .'</div>';
+			$link_html .= '<div class="update-links-headline">' . __( 'Updates:', 'wp-post-update-links') .'</div>';
 			$link_html .= '<ul class="update-links">';
 			foreach( $this->update_links[ $post->ID ] as $i => $update_link ){
 				$link_html .= '<li><a href="#post-' . $post->ID . '_update-' . $i .'">' . $update_link . '</a></li>';
@@ -93,7 +98,7 @@ class wp_post_update_links {
 		$this->update_links[] = $post->ID;
 
 		// predefine update link text
-		$update_link_text = __('Update ', 'wp_post_update_links' ) . ( isset(  $this->update_links[ $post->ID ] ) ?  count( $this->update_links[ $post->ID ] ) + 1 : '1' );
+		$update_link_text = __('Update', 'wp-post-update-links' ) . ' ' . ( isset(  $this->update_links[ $post->ID ] ) ?  count( $this->update_links[ $post->ID ] ) + 1 : '1' );
 
 		/*	
 		 * Check if title is available and not "false" then override standard link text
@@ -106,10 +111,17 @@ class wp_post_update_links {
 
 		$return = '<div class="update" id="post-' . $post->ID . '_update-' . ( count( $this->update_links[ $post->ID ] ) - 1 ) . '">';
 		if(	
-			!( isset( $atts['notitle'] )
-			&& $atts['notitle'] == "true" )
-			&& ( isset( $atts['title'] )
-			&& $atts['title'] != "false" ) 
+			(
+				!( isset( $atts['notitle'] )
+				&& $atts['notitle'] == "true" )
+				&& ( isset( $atts['title'] )
+				&& $atts['title'] != "false" ) 
+			)
+			|| ( 
+				!( isset( $atts['notitle'] ) )
+				&& !( isset( $atts['title'] ) )
+			)
+
 		) {
 			$return .= '<p class="update-post-title">' . $update_link_text  . '</p>';
 		}

@@ -1,0 +1,28 @@
+# Copyright (C) 2012 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Post Update Links\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress-post-update-links\n"
+"POT-Creation-Date: 2012-02-17 08:10:06+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-02-18 10:42+0100\n"
+"Last-Translator: Li-An <lian00@gmail.com>\n"
+"Language-Team: Li-An <lian00@gmail.com>\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+
+#: wp-post-update-links.php:62
+msgid "Updates:"
+msgstr "Mises à jour:"
+
+#: wp-post-update-links.php:96
+msgid "Update "
+msgstr "Mise à jour"
+
+#: wp-post-update-links.php:138
+msgid "Flattr"
+msgstr "Flattr"
+

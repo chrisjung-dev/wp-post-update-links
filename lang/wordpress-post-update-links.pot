@@ -17,7 +17,7 @@ msgid "Updates:"
 msgstr ""
 
 #: wp-post-update-links.php:96
-msgid "Update "
+msgid "Update"
 msgstr ""
 
 #: wp-post-update-links.php:138
