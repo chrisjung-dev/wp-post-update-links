@@ -65,7 +65,7 @@ nope.
 
 = 0.4.0 = 
 
- * Add Localization for french Language thanks to Li-An
+ * Add Localization for french Language thanks to [Jean-Michel MEYER (dit Li-An)](http://www.li-an.fr/blog)
  * Fix Header display problem in articles
 
 = 0.3.0 = 
